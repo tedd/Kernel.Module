@@ -95,7 +95,8 @@ namespace Kernel.Module
                     _searchStrings = new Dictionary<string, bool>();
 
                 _searchStrings.Add(Name, false);
-                _searchStrings.Add(FullName, false);
+                if (!_searchStrings.ContainsKey(FullName))
+                    _searchStrings.Add(FullName, false);
 
                 // We first need to update a list of baseclasses, we'll be checking them too for interfaces
                 PreCacheBaseClassesList();

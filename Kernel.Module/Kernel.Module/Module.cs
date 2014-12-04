@@ -81,7 +81,12 @@ namespace Kernel.Module
         {
             get
             {
-                foreach (var c in _moduleClasses)
+                List<ModuleClass> moduleClasses ;
+                lock (_moduleClassesLock)
+                {
+                    moduleClasses = new List<ModuleClass>(_moduleClasses);
+                }
+                foreach (var c in moduleClasses)
                 {
                     yield return c;
                 }
