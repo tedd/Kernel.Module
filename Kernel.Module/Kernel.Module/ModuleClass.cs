@@ -132,8 +132,10 @@ namespace Kernel.Module
                 _interfaces.Add(childInterface, false);
 
                 // Add search strings
-                AddSearchString(childInterface.Name);
-                AddSearchString(childInterface.FullName);
+                if (!string.IsNullOrEmpty(childInterface.Name))
+                    AddSearchString(childInterface.Name);
+                if (!string.IsNullOrEmpty(childInterface.FullName))
+                    AddSearchString(childInterface.FullName);
 
                 // Check children
                 if (recursively)
@@ -160,8 +162,10 @@ namespace Kernel.Module
             // Add to list
             baseClasses.Add(type.BaseType);
             // Add search strings
-            AddSearchString(type.BaseType.Name);
-            AddSearchString(type.BaseType.FullName);
+            if (!string.IsNullOrEmpty(type.BaseType.Name))
+                AddSearchString(type.BaseType.Name);
+            if (!string.IsNullOrEmpty(type.BaseType.FullName))
+                AddSearchString(type.BaseType.FullName);
 
             // Recurse
             AddAllBaseClassesRecursively(baseClasses, type.BaseType);
